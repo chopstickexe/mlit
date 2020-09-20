@@ -58,10 +58,11 @@ class Crawler:
         return ret
 
     def crawl_next(self):
-        next_page_a = self.soup.find("img", alt="次のページ").parent
-        if not next_page_a or "href" not in next_page_a.attrs:
+        next_page_button = self.soup.find("img", alt="次のページ")
+        if not next_page_button:
             self.page = None
             return
+        next_page_a = next_page_button.parent
         self.page = next_page_a["href"]
 
         self.logger.info(f"GET {self.root}{self.page}")
