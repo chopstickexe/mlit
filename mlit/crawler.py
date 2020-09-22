@@ -72,7 +72,7 @@ class Crawler:
 
 
 def set_logger(name: str, level: int = logging.INFO):
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger(name)
     handler = logging.StreamHandler()
     formatter = logging.Formatter("%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
     handler.setFormatter(formatter)
