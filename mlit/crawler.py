@@ -13,7 +13,7 @@ from bs4.element import Tag
 
 class Normalizer:
     def remove_spaces(txt: str):
-        return re.sub(r"\s","", txt)
+        return re.sub(r"\s", "", txt)
 
 
 class Crawler:
@@ -89,7 +89,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("csv_path", help="path to the generated csv")
     parser.add_argument(
-        "-i", "--interval", type=int, default=10, help="crawl interval [secs] (Default: 10) "
+        "-i",
+        "--interval",
+        type=int,
+        default=10,
+        help="crawl interval [secs] (Default: 10) ",
     )
     args = parser.parse_args()
 
