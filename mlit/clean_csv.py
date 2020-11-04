@@ -1,5 +1,6 @@
 import argparse
 import csv
+
 from crawler import Normalizer
 
 
@@ -20,6 +21,7 @@ def main():
     ) as nf:
         reader = csv.DictReader(of)
         writer = csv.DictWriter(nf, fieldnames=reader.fieldnames)
+        writer.writeheader()
         for record in reader:
             new_record = {}
             for k, v in record.items():
