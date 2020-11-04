@@ -1,14 +1,19 @@
 import argparse
 import csv
 import logging
+import re
 import time
 from typing import List
 from unicodedata import normalize
 
 import requests
-
 from bs4 import BeautifulSoup
 from bs4.element import Tag
+
+
+class Normalizer:
+    def remove_spaces(txt: str):
+        return re.sub(r"\s","", txt)
 
 
 class Crawler:
