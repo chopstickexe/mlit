@@ -17,9 +17,9 @@ from datetime import datetime
 from mcp.server.fastmcp import FastMCP
 from mcp.types import Resource, Tool
 
-from .crawler import Crawler, set_logger
-from .parser import Parser
-from .clean_csv import clean_csv
+from mlit.crawler import Crawler, set_logger
+from mlit.parser import Parser
+from mlit.clean_csv import clean_csv
 
 
 # Initialize MCP server
