@@ -12,6 +12,7 @@ from bs4.element import Tag
 
 
 class Normalizer:
+    @staticmethod
     def remove_spaces(txt: str):
         return re.sub(r"\s", "", txt)
 
