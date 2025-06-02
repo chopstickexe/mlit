@@ -1,7 +1,35 @@
 import argparse
 import csv
+import io
 
 from .crawler import Normalizer
+
+
+def clean_csv(input_data: str) -> str:
+    """
+    Clean CSV data by removing extra whitespace from all fields.
+    
+    Args:
+        input_data: CSV data as string
+        
+    Returns:
+        Cleaned CSV data as string
+    """
+    input_file = io.StringIO(input_data)
+    output_file = io.StringIO()
+    
+    reader = csv.reader(input_file)
+    writer = csv.writer(output_file)
+    
+    for row in reader:
+        cleaned_row = [Normalizer.remove_spaces(field) for field in row]
+        writer.writerow(cleaned_row)
+    
+    result = output_file.getvalue()
+    input_file.close()
+    output_file.close()
+    
+    return result
 
 
 def get_args():

@@ -3,3 +3,4 @@ bs4
 pytest
 black
 flake8
+mcp[cli]>=1.4.0
