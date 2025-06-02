@@ -6,7 +6,7 @@ class Parser:
         self.csv_path = csv_path
 
     def __enter__(self):
-        self.file = open(self.csv_path, newline='', encoding="UTf-8")
+        self.file = open(self.csv_path, newline='', encoding="UTF-8")
         self.reader = csv.DictReader(self.file)
         return self
 

@@ -1,7 +1,7 @@
 import argparse
 import csv
 
-from crawler import Normalizer
+from .crawler import Normalizer
 
 
 def get_args():
