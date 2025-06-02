@@ -98,8 +98,8 @@ def main():
     )
     args = parser.parse_args()
 
-    root = "https://carinf.mlit.go.jp/jidosha/carinf/opn/"
-    init_page = "search.html?nccharset=59D56292&selCarTp=1&lstCarNo=000&txtFrDat=1000%2F01%2F01&txtToDat=9999%2F12%2F31&txtNamNm=&txtMdlNm=&txtEgmNm=&chkDevCd="  # noqa: E501
+    root = "https://renrakuda.mlit.go.jp/renrakuda/"
+    init_page = "opn.search.html?selCarTp=1&lstCarNo=&txtFrDat=0000-00-00&txtToDat=9999-99-31&txtNamNm=&txtMdlNm=&txtEgmNm=&chkDevCd=&contentSummary=&contentSummaryCondition=STRINC&asv=false"  # noqa: E501
     csv_path = args.csv_path
     set_logger(__name__)
     logger = logging.getLogger(__name__)
