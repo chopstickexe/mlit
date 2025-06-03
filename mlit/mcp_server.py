@@ -30,8 +30,8 @@ set_logger(__name__)
 logger = logging.getLogger(__name__)
 
 # MLIT website configuration
-MLIT_ROOT = "https://carinf.mlit.go.jp/jidosha/carinf/opn/"
-MLIT_INIT_PAGE = "search.html?nccharset=59D56292&selCarTp=1&lstCarNo=000&txtFrDat=1000%2F01%2F01&txtToDat=9999%2F12%2F31&txtNamNm=&txtMdlNm=&txtEgmNm=&chkDevCd="
+MLIT_ROOT = "https://renrakuda.mlit.go.jp/renrakuda/"
+MLIT_INIT_PAGE = "opn.search.html?selCarTp=1&lstCarNo=&txtFrDat=0000-00-00&txtToDat=9999-99-31&txtNamNm=&txtMdlNm=&txtEgmNm=&chkDevCd=&contentSummary=&contentSummaryCondition=STRINC&asv=false"
 
 
 @mcp.tool()
@@ -39,8 +39,8 @@ async def search_vehicle_defects(
     manufacturer: Optional[str] = None,
     model: Optional[str] = None,
     max_pages: int = 1,
-    from_date: str = "1000/01/01",
-    to_date: str = "9999/12/31"
+    from_date: str = "0000-00-00",
+    to_date: str = "9999-99-31"
 ) -> str:
     """
     Search for vehicle defect information from MLIT database.
@@ -49,22 +49,22 @@ async def search_vehicle_defects(
         manufacturer: Vehicle manufacturer name (Japanese)
         model: Vehicle model name (Japanese)
         max_pages: Maximum number of pages to crawl (default: 1)
-        from_date: Start date in YYYY/MM/DD format (default: 1000/01/01)
-        to_date: End date in YYYY/MM/DD format (default: 9999/12/31)
+        from_date: Start date in YYYY-MM-DD format (default: 0000-00-00)
+        to_date: End date in YYYY-MM-DD format (default: 9999-99-31)
     
     Returns:
         JSON string containing vehicle defect records
     """
     try:
         # Build search URL with parameters
-        search_params = f"search.html?nccharset=59D56292&selCarTp=1&lstCarNo=000&txtFrDat={from_date}&txtToDat={to_date}"
+        search_params = f"opn.search.html?selCarTp=1&lstCarNo=&txtFrDat={from_date}&txtToDat={to_date}"
         
         if manufacturer:
             search_params += f"&txtNamNm={manufacturer}"
         if model:
             search_params += f"&txtMdlNm={model}"
             
-        search_params += "&txtEgmNm=&chkDevCd="
+        search_params += "&txtEgmNm=&chkDevCd=&contentSummary=&contentSummaryCondition=STRINC&asv=false"
         
         # Initialize crawler
         crawler = Crawler(MLIT_ROOT, search_params)
@@ -245,7 +245,7 @@ async def get_defects_schema() -> str:
             "description": "Vehicle defect information from Japanese MLIT database",
             "columns": header,
             "column_count": len(header),
-            "data_source": "https://carinf.mlit.go.jp/",
+            "data_source": "https://renrakuda.mlit.go.jp/",
             "encoding": "UTF-8",
             "language": "Japanese"
         }
