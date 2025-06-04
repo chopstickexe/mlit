@@ -13,6 +13,7 @@ import logging
 import tempfile
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+from urllib.parse import quote
 
 from mcp.server.fastmcp import FastMCP
 from mcp.types import Resource, Tool
@@ -57,14 +58,17 @@ async def search_vehicle_defects(
     """
     try:
         # Build search URL with parameters
-        search_params = f"opn.search.html?selCarTp=1&lstCarNo=&txtFrDat={from_date}&txtToDat={to_date}"
+        search_params = f"opn.search.html?selCarTp=1&lstCarNo="
         
         if manufacturer:
-            search_params += f"&txtNamNm={manufacturer}"
+            search_params += quote(manufacturer, safe='')
+        
+        search_params += f"&txtFrDat={from_date}&txtToDat={to_date}&txtNamNm="
+        
         if model:
-            search_params += f"&txtMdlNm={model}"
+            search_params += quote(model, safe='')
             
-        search_params += "&txtEgmNm=&chkDevCd=&contentSummary=&contentSummaryCondition=STRINC&asv=false"
+        search_params += "&txtMdlNm=&txtEgmNm=&chkDevCd=&contentSummary=&contentSummaryCondition=STRINC&asv=false"
         
         # Initialize crawler
         crawler = Crawler(MLIT_ROOT, search_params)
