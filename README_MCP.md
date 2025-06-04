@@ -67,8 +67,8 @@ await search_vehicle_defects(
 
 # Search with date range
 await search_vehicle_defects(
-    from_date="2020/01/01",
-    to_date="2023/12/31",
+    from_date="2020-01-01",
+    to_date="2023-12-31",
     max_pages=5
 )
 ```
