@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "mlit-defects": {
-      "command": "python",
+      "command": "/Users/lisa/dev/mlit/.venv/bin/python",
       "args": ["-m", "mlit.mcp_server"],
       "cwd": "/Users/lisa/dev/mlit"
     }
