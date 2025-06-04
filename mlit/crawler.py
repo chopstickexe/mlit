@@ -18,7 +18,7 @@ class Normalizer:
 
 
 class Crawler:
-    def __init__(self, root: str, init_page: str, num_of_cols: int = 13):
+    def __init__(self, root: str, init_page: str, num_of_cols: int = 12):
         self.logger = logging.getLogger(__name__)
         self.root = root
         self.page = init_page
@@ -33,7 +33,7 @@ class Crawler:
 
     @classmethod
     def _get_string(cls, elm: Tag) -> str:
-        elm_str = elm.string
+        elm_str = elm.text
         if elm_str:
             return cls._remove_spaces(elm_str)
         else:
