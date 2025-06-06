@@ -10,6 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
+from .compliance import ComplianceChecker, validate_export_compliance
+
 
 class Normalizer:
     @staticmethod
@@ -23,6 +25,15 @@ class Crawler:
         self.root = root
         self.page = init_page
         self.num_of_cols = num_of_cols
+        
+        # 外為法コンプライアンスチェック
+        self.compliance_checker = ComplianceChecker()
+        compliance_result = self.compliance_checker.check_data_compliance(
+            data_source=self.root,
+            data_type="自動車不具合情報"
+        )
+        self.compliance_checker.log_compliance_check(compliance_result)
+        
         self.logger.info(f"GET {self.root}{self.page}")
         url = requests.get(self.root + self.page)
         self.soup = BeautifulSoup(url.content, "html.parser")
